@@ -1,0 +1,3 @@
+sample_id	gex_fastqs	gex_fastq_id	vdj_fastqs	vdj_fastq_id	chemistry
+S1	/data/fastqs	S1_GEX	/data/fastqs	S1_VDJ	auto
+S2	/data/fastqs	S2_GEX	/data/fastqs	S2_VDJ	auto
