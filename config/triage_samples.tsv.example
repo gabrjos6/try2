@@ -1,0 +1,3 @@
+sample_id	r1	r2
+SRR29067496	/abs/path/SRR29067496_1.fastq.gz	/abs/path/SRR29067496_2.fastq.gz
+S2	/abs/path/S2_1.fastq.gz	/abs/path/S2_2.fastq.gz

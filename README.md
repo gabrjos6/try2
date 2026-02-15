@@ -83,3 +83,43 @@ Notes:
 
 - Assumes 10x Chromium 5' GEX + VDJ data model.
 - If your FASTQs are not 10x-compatible, use a separate upstream aligner/caller path (e.g., STARsolo + MiXCR/TRUST4) and adapt postprocessing accordingly.
+
+## 2-3 Hour Triage Mode (fastest TCR-only)
+
+Use this when hard wall-clock time matters more than full scRNA processing.
+
+### Input
+
+`triage_samples.tsv`
+```tsv
+sample_id	r1	r2
+SRR29067496	/abs/path/SRR29067496_1.fastq.gz	/abs/path/SRR29067496_2.fastq.gz
+```
+
+### Run
+
+```bash
+bash scripts/run_tcr_triage.sh \
+  --samples /abs/path/triage_samples.tsv \
+  --outdir /abs/path/triage_out \
+  --tool auto \
+  --species hsa \
+  --mixcr-preset generic-single-cell-gex \
+  --total-cores 32 \
+  --jobs 16 \
+  --limit-input 0
+```
+
+Optional hard-deadline acceleration:
+- `--limit-input 3000000` (or lower) to process only a subset of reads per sample.
+
+### Triage outputs
+
+- `triage_out/postprocess/paired_alpha_beta_cells.csv`
+- `triage_out/postprocess/paired_alpha_beta_clonotype_abundance.csv`
+- `triage_out/postprocess/bulk_chain_abundance.csv`
+- `triage_out/postprocess/run_summary.json`
+
+Notes:
+- Paired alpha/beta output requires cell-level identifiers in AIRR outputs (typical for compatible single-cell workflows).
+- If cell IDs are unavailable, `bulk_chain_abundance.csv` is still produced (TRA/TRB clonotype abundance without true per-cell pairing).
