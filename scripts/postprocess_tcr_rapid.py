@@ -136,7 +136,7 @@ def _bulk_chain_abundance(airr_df: pd.DataFrame, sample_id: str) -> pd.DataFrame
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description="Combine triage TCR outputs into paired-chain abundance tables.")
+    p = argparse.ArgumentParser(description="Combine rapid TCR outputs into paired-chain abundance tables.")
     p.add_argument("--samples-tsv", required=True)
     p.add_argument("--result-root", required=True)
     p.add_argument("--outdir", required=True)

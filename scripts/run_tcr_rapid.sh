@@ -4,9 +4,9 @@ set -euo pipefail
 usage() {
   cat <<'EOF'
 Usage:
-  bash scripts/run_tcr_triage.sh \
-    --samples /abs/path/triage_samples.tsv \
-    --outdir /abs/path/triage_out \
+  bash scripts/run_tcr_rapid.sh \
+    --samples /abs/path/rapid_tcr_samples.tsv \
+    --outdir /abs/path/rapid_tcr_out \
     [--tool auto|mixcr|trust4] \
     [--species hsa] \
     [--mixcr-preset generic-single-cell-gex] \
@@ -161,7 +161,7 @@ for pid in "${PIDS[@]}"; do
   wait "$pid"
 done
 
-python3 scripts/postprocess_tcr_triage.py \
+python3 scripts/postprocess_tcr_rapid.py \
   --samples-tsv "$SAMPLES" \
   --result-root "$OUTDIR/raw" \
   --outdir "$OUTDIR/postprocess"
